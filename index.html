@@ -1,0 +1,1016 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MD TAMJID ASHRAF | CSE Specialist & AI Researcher</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        cyber: {
+                            50: '#f0fdfa',
+                            100: '#ccfbf1',
+                            400: '#2dd4bf',
+                            500: '#14b8a6',
+                            800: '#075985',
+                            900: '#030712',
+                        },
+                        neon: {
+                            cyan: '#00f2fe',
+                            blue: '#4facfe',
+                            purple: '#a855f7',
+                            pink: '#ec4899',
+                            green: '#10b981'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'system-ui', 'sans-serif'],
+                        mono: ['Fira Code', 'Courier New', 'monospace'],
+                    },
+                    animation: {
+                        'spin-slow': 'spin 16s linear infinite',
+                        'pulse-glow': 'pulseGlow 3s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                        'float': 'float 4s ease-in-out infinite',
+                        'scanline': 'scanline 8s linear infinite',
+                        'radar-sweep': 'radarSweep 4s linear infinite',
+                    },
+                    keyframes: {
+                        pulseGlow: {
+                            '0%, 100%': { opacity: '1', filter: 'drop-shadow(0 0 25px rgba(0, 242, 254, 0.7))' },
+                            '50%': { opacity: '0.5', filter: 'drop-shadow(0 0 10px rgba(168, 85, 247, 0.5))' },
+                        },
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0px)' },
+                            '50%': { transform: 'translateY(-14px)' },
+                        },
+                        scanline: {
+                            '0%': { transform: 'translateY(-100%)' },
+                            '100%': { transform: 'translateY(1000%)' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- FontAwesome icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #030712;
+            color: #f3f4f6;
+            overflow-x: hidden;
+        }
+
+        /* Intelligent CS Grid & Point-to-Point Node Background Canvas */
+        #cs-network-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            z-index: -20;
+            pointer-events: none;
+        }
+
+        /* Overlay Digital Grid Lines */
+        .cyber-grid-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background-image: 
+                linear-gradient(to right, rgba(0, 242, 254, 0.03) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(168, 85, 247, 0.03) 1px, transparent 1px);
+            background-size: 50px 50px;
+            z-index: -10;
+            pointer-events: none;
+        }
+
+        /* Glassmorphism CS Container Styling */
+        .glass-cs-card {
+            background: rgba(11, 17, 32, 0.75);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(0, 242, 254, 0.12);
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.5);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+        }
+
+        .glass-cs-card:hover {
+            border-color: rgba(0, 242, 254, 0.5);
+            transform: translateY(-6px);
+            box-shadow: 0 16px 40px -10px rgba(0, 242, 254, 0.3);
+        }
+
+        /* Glowing Tech Brackets */
+        .tech-bracket::before, .tech-bracket::after {
+            content: '';
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            border-color: rgba(0, 242, 254, 0.6);
+            pointer-events: none;
+        }
+        .tech-bracket::before {
+            top: 0; left: 0;
+            border-top: 2px solid #00f2fe;
+            border-left: 2px solid #00f2fe;
+            border-top-left-radius: 8px;
+        }
+        .tech-bracket::after {
+            bottom: 0; right: 0;
+            border-bottom: 2px solid #a855f7;
+            border-right: 2px solid #a855f7;
+            border-bottom-right-radius: 8px;
+        }
+
+        .neon-text-gradient {
+            background: linear-gradient(135deg, #00f2fe 0%, #4facfe 40%, #a855f7 80%, #ec4899 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .neon-border-box {
+            position: relative;
+            background: rgba(10, 15, 30, 0.85);
+            border-radius: 1.5rem;
+        }
+
+        .neon-border-box::before {
+            content: '';
+            position: absolute;
+            inset: -2px;
+            border-radius: 1.6rem;
+            background: linear-gradient(90deg, #00f2fe, #a855f7, #ec4899, #00f2fe);
+            background-size: 300% 300%;
+            z-index: -1;
+            animation: borderGlow 8s linear infinite;
+        }
+
+        @keyframes borderGlow {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #030712;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #1e293b;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #00f2fe;
+        }
+    </style>
+</head>
+<body class="relative min-h-screen text-slate-100 selection:bg-cyan-500 selection:text-black">
+
+    <!-- Intelligent Point-to-Point Node Background Canvas -->
+    <canvas id="cs-network-canvas"></canvas>
+    
+    <!-- Cyber Grid Overlay -->
+    <div class="cyber-grid-overlay"></div>
+
+    <!-- Header / Top Bar Navigation -->
+    <header class="sticky top-0 z-50 glass-cs-card border-b border-slate-800/80 bg-slate-950/80">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-20">
+                <!-- Logo & Brand -->
+                <a href="#about" class="flex items-center gap-3 group">
+                    <div class="w-11 h-11 rounded-xl bg-gradient-to-tr from-cyan-500 via-indigo-500 to-purple-600 p-0.5 shadow-lg shadow-cyan-500/30 group-hover:scale-105 transition">
+                        <div class="w-full h-full bg-slate-950 rounded-[10px] flex items-center justify-center font-mono font-black text-xl text-cyan-400">
+                            TA
+                        </div>
+                    </div>
+                    <div class="flex flex-col">
+                        <span class="font-black text-lg tracking-wider neon-text-gradient uppercase">TAMJID ASHRAF</span>
+                        <span class="text-[10px] tracking-widest text-cyan-400 font-mono">CSE ENGINEER & RESEARCHER</span>
+                    </div>
+                </a>
+
+                <!-- Desktop Navigation Links -->
+                <nav class="hidden xl:flex items-center space-x-7 text-xs font-semibold uppercase tracking-wider text-slate-300">
+                    <a href="#about" class="hover:text-cyan-400 transition-colors">About</a>
+                    <a href="#expertise" class="hover:text-cyan-400 transition-colors">Expertise</a>
+                    <a href="#china-project" class="hover:text-cyan-400 transition-colors">China AI Project</a>
+                    <a href="#research" class="hover:text-cyan-400 transition-colors">Research Proposal</a>
+                    <a href="#skills" class="hover:text-cyan-400 transition-colors">Skills</a>
+                    <a href="#experience" class="hover:text-cyan-400 transition-colors">Experience</a>
+                    <a href="#education" class="hover:text-cyan-400 transition-colors">Education</a>
+                    <a href="#contact" class="hover:text-cyan-400 transition-colors">Contact</a>
+                </nav>
+
+                <!-- Header Actions -->
+                <div class="hidden sm:flex items-center gap-3">
+                    <a href="https://wa.me/8801735384372" target="_blank" rel="noopener font-medium" class="px-4 py-2 rounded-xl text-xs bg-emerald-600/20 text-emerald-400 border border-emerald-500/40 hover:bg-emerald-600 hover:text-white transition-all flex items-center gap-2 shadow-lg shadow-emerald-500/10">
+                        <i class="fab fa-whatsapp text-sm"></i> WhatsApp
+                    </a>
+                    <a href="#contact" class="px-4 py-2 rounded-xl text-xs bg-cyan-500 text-slate-950 font-bold hover:bg-cyan-400 transition-all flex items-center gap-2 shadow-lg shadow-cyan-500/20">
+                        <i class="fas fa-paper-plane text-xs"></i> Hire Me
+                    </a>
+                </div>
+
+                <!-- Mobile Menu Toggle Button -->
+                <div class="xl:hidden">
+                    <button id="mobile-toggle" class="p-2.5 rounded-xl text-slate-400 hover:text-cyan-400 hover:bg-slate-900 focus:outline-none">
+                        <i class="fas fa-bars text-xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile Navigation Menu -->
+        <div id="mobile-menu" class="hidden xl:hidden glass-cs-card border-t border-slate-800 px-6 py-6 space-y-4">
+            <a href="#about" class="block text-sm font-medium hover:text-cyan-400">About Me</a>
+            <a href="#expertise" class="block text-sm font-medium hover:text-cyan-400">Key Expertise</a>
+            <a href="#china-project" class="block text-sm font-medium hover:text-cyan-400">China AI Project</a>
+            <a href="#research" class="block text-sm font-medium hover:text-cyan-400">Research Proposal</a>
+            <a href="#skills" class="block text-sm font-medium hover:text-cyan-400">Skills & Tech Stack</a>
+            <a href="#experience" class="block text-sm font-medium hover:text-cyan-400">Work Experience</a>
+            <a href="#education" class="block text-sm font-medium hover:text-cyan-400">Education</a>
+            <a href="#contact" class="block text-sm font-medium hover:text-cyan-400">Get In Touch</a>
+            <div class="pt-4 flex flex-col gap-3">
+                <a href="https://wa.me/8801735384372" target="_blank" class="w-full text-center py-2.5 rounded-xl bg-emerald-600 text-white font-semibold text-xs">
+                    <i class="fab fa-whatsapp text-sm mr-1"></i> WhatsApp Message
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero / About Section -->
+    <section id="about" class="pt-12 pb-20 md:py-28 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+            
+            <!-- Left Info Content -->
+            <div class="lg:col-span-7 space-y-6 text-center lg:text-left">
+                <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full glass-cs-card border-cyan-500/40 text-cyan-400 text-xs font-mono">
+                    <span class="w-2.5 h-2.5 rounded-full bg-cyan-400 animate-ping"></span>
+                    AVAILABLE FOR FULL-TIME ROLES & RESEARCH COLLABORATIONS
+                </div>
+
+                <h1 class="text-4xl sm:text-6xl font-black tracking-tight leading-none">
+                    Hi, I'm <br>
+                    <span class="neon-text-gradient">MD TAMJID ASHRAF</span>
+                </h1>
+
+                <p class="text-slate-300 text-base sm:text-lg leading-relaxed max-w-2xl mx-auto lg:mx-0 font-light">
+                    Senior Computer Science & Engineering (CSE) student at National University. Tech Specialist adept in <strong class="text-cyan-400 font-semibold">Cyber Security & Ethical Hacking</strong>, <strong class="text-purple-400 font-semibold">Artificial Intelligence (AI)</strong>, <strong class="text-pink-400 font-semibold">Video Editing & Motion Graphics</strong>, software systems management, and digital business operations.
+                </p>
+
+                <!-- Direct Action Buttons -->
+                <div class="flex flex-wrap gap-4 justify-center lg:justify-start pt-3">
+                    <a href="https://wa.me/8801735384372" target="_blank" class="px-6 py-3.5 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs sm:text-sm tracking-wider uppercase flex items-center gap-2 shadow-lg shadow-emerald-600/30 transition transform hover:-translate-y-1">
+                        <i class="fab fa-whatsapp text-lg"></i> Chat on WhatsApp
+                    </a>
+                    <a href="mailto:tamjidmd50@gmail.com" class="px-6 py-3.5 rounded-xl glass-cs-card text-white font-bold text-xs sm:text-sm tracking-wider uppercase flex items-center gap-2 border border-cyan-500/40 hover:bg-cyan-500/10 transition transform hover:-translate-y-1">
+                        <i class="fas fa-envelope text-cyan-400"></i> Email Me
+                    </a>
+                    <a href="tel:+8801735384372" class="px-6 py-3.5 rounded-xl glass-cs-card text-white font-bold text-xs sm:text-sm tracking-wider uppercase flex items-center gap-2 border border-purple-500/40 hover:bg-purple-500/10 transition transform hover:-translate-y-1">
+                        <i class="fas fa-phone-alt text-purple-400"></i> Direct Call
+                    </a>
+                </div>
+
+                <!-- Direct Badges Bar -->
+                <div class="pt-6 flex flex-wrap justify-center lg:justify-start gap-6 text-xs text-slate-400 font-mono">
+                    <a href="https://maps.google.com/?q=Dhaka,Bangladesh" target="_blank" class="flex items-center gap-2 hover:text-cyan-400 transition">
+                        <i class="fas fa-map-marker-alt text-red-500"></i> Dhaka, Bangladesh
+                    </a>
+                    <a href="tel:+8801735384372" class="flex items-center gap-2 hover:text-cyan-400 transition">
+                        <i class="fas fa-phone text-emerald-400"></i> +880 1735384372
+                    </a>
+                    <a href="mailto:tamjidmd50@gmail.com" class="flex items-center gap-2 hover:text-cyan-400 transition">
+                        <i class="fas fa-envelope text-cyan-400"></i> tamjidmd50@gmail.com
+                    </a>
+                </div>
+            </div>
+
+            <!-- Right Profile Frame inside "tamjid" folder -->
+            <div class="lg:col-span-5 flex justify-center">
+                <div class="relative w-64 h-64 sm:w-80 sm:h-80">
+                    <!-- Outer Rotating Glow Rings -->
+                    <div class="absolute -inset-4 rounded-full bg-gradient-to-r from-cyan-500 via-purple-600 to-pink-500 opacity-75 blur-md animate-spin-slow"></div>
+                    <div class="absolute inset-0 rounded-full border-2 border-cyan-400/50 animate-pulse"></div>
+
+                    <!-- Inner Circular Image Holder (Path: tamjid/picture.jpg with fallback) -->
+                    <div class="relative w-full h-full rounded-full overflow-hidden bg-slate-900 border-4 border-slate-950 shadow-2xl">
+                        <img id="user-picture" src="tamjid/picture.jpg" alt="MD TAMJID ASHRAF" class="w-full h-full object-cover object-top hover:scale-110 transition duration-700" onerror="this.onerror=null; this.src='picture.jpg'; this.onerror=function(){this.src='https://placehold.co/400x400/0f172a/00f2fe?text=Tamjid+Ashraf';}">
+                    </div>
+
+                    <!-- Floating Tech Badge -->
+                    <div class="absolute -bottom-2 -right-2 glass-cs-card border border-cyan-400/50 px-4 py-2 rounded-2xl flex items-center gap-3 shadow-2xl animate-float tech-bracket">
+                        <i class="fas fa-shield-alt text-cyan-400 text-xl"></i>
+                        <div class="text-left">
+                            <div class="text-[10px] text-slate-400 uppercase font-mono">Specialist</div>
+                            <div class="text-xs font-bold text-white">Ethical Hacker & AI Dev</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Key Expertise Section -->
+    <section id="expertise" class="py-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-16 space-y-3">
+            <h2 class="text-3xl sm:text-5xl font-black uppercase tracking-tight">
+                Key <span class="neon-text-gradient">Expertise</span>
+            </h2>
+            <p class="text-slate-400 text-sm sm:text-base max-w-2xl mx-auto">
+                Bridging core Computer Science engineering with security analysis, multimedia production, and business technology.
+            </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+
+            <!-- Cyber Security & Ethical Hacking -->
+            <div class="glass-cs-card p-8 rounded-3xl relative group tech-bracket">
+                <div class="w-14 h-14 rounded-2xl bg-red-500/10 border border-red-500/30 flex items-center justify-center text-red-400 text-2xl mb-6 group-hover:bg-red-500 group-hover:text-white transition duration-300">
+                    <i class="fas fa-user-shield"></i>
+                </div>
+                <h3 class="text-xl font-bold text-white mb-3">Cyber Security & Hacking</h3>
+                <p class="text-slate-400 text-sm leading-relaxed mb-6 font-light">
+                    Ethical hacking practices, penetration testing workflows, network security inspection, and cyber threat mitigation techniques.
+                </p>
+                <div class="flex flex-wrap gap-2 text-[11px] font-mono">
+                    <span class="px-3 py-1 rounded-lg bg-red-950/50 text-red-300 border border-red-800/40">Ethical Hacking</span>
+                    <span class="px-3 py-1 rounded-lg bg-red-950/50 text-red-300 border border-red-800/40">Pen Testing</span>
+                    <span class="px-3 py-1 rounded-lg bg-red-950/50 text-red-300 border border-red-800/40">Network Guard</span>
+                </div>
+            </div>
+
+            <!-- Artificial Intelligence (AI) -->
+            <div class="glass-cs-card p-8 rounded-3xl relative group tech-bracket">
+                <div class="w-14 h-14 rounded-2xl bg-cyan-500/10 border border-cyan-500/30 flex items-center justify-center text-cyan-400 text-2xl mb-6 group-hover:bg-cyan-500 group-hover:text-slate-950 transition duration-300">
+                    <i class="fas fa-brain"></i>
+                </div>
+                <h3 class="text-xl font-bold text-white mb-3">Artificial Intelligence (AI)</h3>
+                <p class="text-slate-400 text-sm leading-relaxed mb-6 font-light">
+                    AI workflow automation, neural model integration, prompt engineering, and hands-on international project execution.
+                </p>
+                <div class="flex flex-wrap gap-2 text-[11px] font-mono">
+                    <span class="px-3 py-1 rounded-lg bg-cyan-950/50 text-cyan-300 border border-cyan-800/40">AI Integration</span>
+                    <span class="px-3 py-1 rounded-lg bg-cyan-950/50 text-cyan-300 border border-cyan-800/40">Prompting</span>
+                    <span class="px-3 py-1 rounded-lg bg-cyan-950/50 text-cyan-300 border border-cyan-800/40">Automation</span>
+                </div>
+            </div>
+
+            <!-- Video Editing & Motion Graphics -->
+            <div class="glass-cs-card p-8 rounded-3xl relative group tech-bracket">
+                <div class="w-14 h-14 rounded-2xl bg-purple-500/10 border border-purple-500/30 flex items-center justify-center text-purple-400 text-2xl mb-6 group-hover:bg-purple-500 group-hover:text-white transition duration-300">
+                    <i class="fas fa-film"></i>
+                </div>
+                <h3 class="text-xl font-bold text-white mb-3">Video Editing & Motion</h3>
+                <p class="text-slate-400 text-sm leading-relaxed mb-6 font-light">
+                    Creating dynamic motion graphics, visual promo content, and high-end video post-production using Adobe Premiere & After Effects.
+                </p>
+                <div class="flex flex-wrap gap-2 text-[11px] font-mono">
+                    <span class="px-3 py-1 rounded-lg bg-purple-950/50 text-purple-300 border border-purple-800/40">After Effects</span>
+                    <span class="px-3 py-1 rounded-lg bg-purple-950/50 text-purple-300 border border-purple-800/40">Premiere Pro</span>
+                    <span class="px-3 py-1 rounded-lg bg-purple-950/50 text-purple-300 border border-purple-800/40">Motion Visuals</span>
+                </div>
+            </div>
+
+            <!-- Sales & Client Relations -->
+            <div class="glass-cs-card p-8 rounded-3xl relative group tech-bracket">
+                <div class="w-14 h-14 rounded-2xl bg-emerald-500/10 border border-emerald-500/30 flex items-center justify-center text-emerald-400 text-2xl mb-6 group-hover:bg-emerald-500 group-hover:text-slate-950 transition duration-300">
+                    <i class="fas fa-chart-line"></i>
+                </div>
+                <h3 class="text-xl font-bold text-white mb-3">Sales & Business Dev</h3>
+                <p class="text-slate-400 text-sm leading-relaxed mb-6 font-light">
+                    Client relation operations, lead conversion pipelines, CRM software tracking, and strategic business growth support.
+                </p>
+                <div class="flex flex-wrap gap-2 text-[11px] font-mono">
+                    <span class="px-3 py-1 rounded-lg bg-emerald-950/50 text-emerald-300 border border-emerald-800/40">Client Growth</span>
+                    <span class="px-3 py-1 rounded-lg bg-emerald-950/50 text-emerald-300 border border-emerald-800/40">CRM Systems</span>
+                    <span class="px-3 py-1 rounded-lg bg-emerald-950/50 text-emerald-300 border border-emerald-800/40">Public Relations</span>
+                </div>
+            </div>
+
+            <!-- Digital Marketing -->
+            <div class="glass-cs-card p-8 rounded-3xl relative group tech-bracket">
+                <div class="w-14 h-14 rounded-2xl bg-amber-500/10 border border-amber-500/30 flex items-center justify-center text-amber-400 text-2xl mb-6 group-hover:bg-amber-500 group-hover:text-slate-950 transition duration-300">
+                    <i class="fas fa-bullhorn"></i>
+                </div>
+                <h3 class="text-xl font-bold text-white mb-3">Digital Marketing</h3>
+                <p class="text-slate-400 text-sm leading-relaxed mb-6 font-light">
+                    Social media marketing campaigns, visual brand communication, content creation, and audience targeting tactics.
+                </p>
+                <div class="flex flex-wrap gap-2 text-[11px] font-mono">
+                    <span class="px-3 py-1 rounded-lg bg-amber-950/50 text-amber-300 border border-amber-800/40">Ad Campaigns</span>
+                    <span class="px-3 py-1 rounded-lg bg-amber-950/50 text-amber-300 border border-amber-800/40">Brand Identity</span>
+                    <span class="px-3 py-1 rounded-lg bg-amber-950/50 text-amber-300 border border-amber-800/40">Digital Growth</span>
+                </div>
+            </div>
+
+            <!-- Operating Systems & IT Support -->
+            <div class="glass-cs-card p-8 rounded-3xl relative group tech-bracket">
+                <div class="w-14 h-14 rounded-2xl bg-blue-500/10 border border-blue-500/30 flex items-center justify-center text-blue-400 text-2xl mb-6 group-hover:bg-blue-500 group-hover:text-white transition duration-300">
+                    <i class="fas fa-desktop"></i>
+                </div>
+                <h3 class="text-xl font-bold text-white mb-3">OS & IT Systems Management</h3>
+                <p class="text-slate-400 text-sm leading-relaxed mb-6 font-light">
+                    Operating system management (Windows/Linux), remote technical troubleshooting, AnyDesk support, and enterprise software admin.
+                </p>
+                <div class="flex flex-wrap gap-2 text-[11px] font-mono">
+                    <span class="px-3 py-1 rounded-lg bg-blue-950/50 text-blue-300 border border-blue-800/40">Windows / Linux</span>
+                    <span class="px-3 py-1 rounded-lg bg-blue-950/50 text-blue-300 border border-blue-800/40">IT Troubleshooting</span>
+                    <span class="px-3 py-1 rounded-lg bg-blue-950/50 text-blue-300 border border-blue-800/40">AnyDesk Support</span>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Featured International AI Project (China) -->
+    <section id="china-project" class="py-16 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="neon-border-box p-8 sm:p-12 relative overflow-hidden">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center relative z-10">
+                
+                <div class="lg:col-span-8 space-y-4">
+                    <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-cyan-500/20 text-cyan-300 text-xs font-mono font-bold tracking-wider uppercase">
+                        <i class="fas fa-globe-asia"></i> Global Tech Experience Highlight
+                    </div>
+
+                    <h2 class="text-2xl sm:text-4xl font-extrabold text-white">
+                        International AI Project Participation in China
+                    </h2>
+
+                    <p class="text-slate-300 text-sm sm:text-base leading-relaxed font-light">
+                        Collaborated directly in an international Artificial Intelligence (AI) project initiative hosted in China. Participated in practical deployment of AI models, automated computational workflows, and interactive cross-border research on novel intelligent software systems.
+                    </p>
+
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-2 text-xs text-slate-300 font-mono">
+                        <div class="flex items-center gap-3 glass-cs-card p-3 rounded-xl border-slate-800">
+                            <i class="fas fa-check-circle text-cyan-400 text-base"></i>
+                            <span>AI Workflow & Prompt System Implementation</span>
+                        </div>
+                        <div class="flex items-center gap-3 glass-cs-card p-3 rounded-xl border-slate-800">
+                            <i class="fas fa-check-circle text-cyan-400 text-base"></i>
+                            <span>Global Team Collaboration & Research</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="lg:col-span-4 flex justify-center">
+                    <div class="glass-cs-card p-6 rounded-2xl text-center border-cyan-400/40 w-full max-w-sm tech-bracket">
+                        <div class="w-16 h-16 mx-auto mb-4 rounded-full bg-gradient-to-tr from-cyan-500 to-purple-600 flex items-center justify-center text-white text-3xl shadow-lg shadow-cyan-500/30">
+                            <i class="fas fa-microchip"></i>
+                        </div>
+                        <h4 class="text-lg font-bold text-white">China AI Event</h4>
+                        <p class="text-xs text-cyan-400 font-mono mt-1">Project Contributor & Participant</p>
+                        <span class="inline-block mt-4 px-4 py-1.5 rounded-full bg-cyan-500/10 text-cyan-300 text-xs font-semibold border border-cyan-500/30">
+                            AI Technology Innovation
+                        </span>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Academic Research Proposal Section (NEW) -->
+    <section id="research" class="py-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-16 space-y-3">
+            <h2 class="text-3xl sm:text-5xl font-black uppercase tracking-tight">
+                Academic <span class="neon-text-gradient">Research Proposal</span>
+            </h2>
+            <p class="text-slate-400 text-sm sm:text-base max-w-2xl mx-auto">
+                Proposed Computer Science research focused on intelligent security and model optimization.
+            </p>
+        </div>
+
+        <div class="glass-cs-card p-8 sm:p-12 rounded-3xl border border-cyan-500/30 relative tech-bracket space-y-8">
+            
+            <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-4 pb-6 border-b border-slate-800">
+                <div>
+                    <span class="px-3 py-1 rounded-md bg-purple-950 text-purple-300 text-xs font-mono uppercase tracking-widest font-bold">Research Paper Abstract</span>
+                    <h3 class="text-2xl sm:text-3xl font-extrabold text-white mt-2">
+                        Distributed AI Model Compression & Cyber-Resilient Systems Architecture
+                    </h3>
+                </div>
+                <div class="text-xs font-mono text-cyan-400 flex items-center gap-2">
+                    <i class="fas fa-flask"></i> CSE Research Focus Area
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+                <div class="lg:col-span-8 space-y-4 text-slate-300 text-sm leading-relaxed font-light">
+                    <h4 class="text-white font-bold text-base flex items-center gap-2">
+                        <i class="fas fa-align-left text-cyan-400"></i> Research Synopsis
+                    </h4>
+                    <p>
+                        Modern edge computing environments demand efficient Deep Neural Network (DNN) execution while defending against adversarial manipulation and network intrusion. This proposal presents a hybrid framework combining <strong class="text-cyan-400">Neural Pruning Compression</strong> with <strong class="text-purple-400">Threat-Resilient Cryptographic Gateways</strong>.
+                    </p>
+                    <p>
+                        By optimizing weight parameters without sacrificing prediction accuracy, edge devices can execute real-time inference while dynamically identifying malicious data payloads through automated threat mitigation algorithms.
+                    </p>
+                </div>
+
+                <div class="lg:col-span-4 space-y-3 font-mono text-xs">
+                    <h4 class="text-white font-bold text-sm font-sans flex items-center gap-2 mb-3">
+                        <i class="fas fa-cubes text-purple-400"></i> Key Thrusts
+                    </h4>
+                    <div class="p-3 rounded-xl bg-slate-900/80 border border-slate-800 flex items-center gap-3">
+                        <i class="fas fa-bolt text-cyan-400 text-base"></i>
+                        <span>Model Pruning & Quantization</span>
+                    </div>
+                    <div class="p-3 rounded-xl bg-slate-900/80 border border-slate-800 flex items-center gap-3">
+                        <i class="fas fa-shield-cat text-purple-400 text-base"></i>
+                        <span>Adversarial Attack Defense</span>
+                    </div>
+                    <div class="p-3 rounded-xl bg-slate-900/80 border border-slate-800 flex items-center gap-3">
+                        <i class="fas fa-network-wired text-emerald-400 text-base"></i>
+                        <span>Edge AI Encryption Node</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Proposal Methodology Grid -->
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-6 pt-6 border-t border-slate-800/80 text-xs">
+                <div class="p-4 rounded-2xl bg-slate-950/60 border border-slate-800">
+                    <div class="text-cyan-400 font-mono font-bold mb-1">Phase 1: Dataset & Compression</div>
+                    <p class="text-slate-400 font-light">Preprocessing image and network metrics to prune superfluous neural weights.</p>
+                </div>
+                <div class="p-4 rounded-2xl bg-slate-950/60 border border-slate-800">
+                    <div class="text-purple-400 font-mono font-bold mb-1">Phase 2: Security Testing</div>
+                    <p class="text-slate-400 font-light">Simulating penetration payloads and vulnerability stress tests on compressed models.</p>
+                </div>
+                <div class="p-4 rounded-2xl bg-slate-950/60 border border-slate-800">
+                    <div class="text-emerald-400 font-mono font-bold mb-1">Phase 3: Real-time Deployment</div>
+                    <p class="text-slate-400 font-light">Validating inference speeds and response times under high network load.</p>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Technical Skills Section -->
+    <section id="skills" class="py-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-16 space-y-3">
+            <h2 class="text-3xl sm:text-5xl font-black uppercase tracking-tight">
+                Technical <span class="neon-text-gradient">Skills & Tools</span>
+            </h2>
+            <p class="text-slate-400 text-sm sm:text-base">Comprehensive software stack, languages, and tools</p>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+            
+            <!-- Programming & Web Tech -->
+            <div class="glass-cs-card p-8 rounded-3xl space-y-6 tech-bracket">
+                <h3 class="text-xl font-bold text-white flex items-center gap-3">
+                    <i class="fas fa-code text-cyan-400"></i> Web Development & Languages
+                </h3>
+                
+                <div class="space-y-4">
+                    <div>
+                        <div class="flex justify-between text-xs font-mono text-slate-300 mb-1">
+                            <span>HTML5, CSS3, JavaScript, PHP</span>
+                            <span class="text-cyan-400">90%</span>
+                        </div>
+                        <div class="w-full bg-slate-900 h-2 rounded-full overflow-hidden p-0.5 border border-slate-800">
+                            <div class="bg-gradient-to-r from-cyan-500 to-blue-500 h-full rounded-full" style="width: 90%;"></div>
+                        </div>
+                    </div>
+
+                    <div>
+                        <div class="flex justify-between text-xs font-mono text-slate-300 mb-1">
+                            <span>C, C++, JAVA</span>
+                            <span class="text-cyan-400">80%</span>
+                        </div>
+                        <div class="w-full bg-slate-900 h-2 rounded-full overflow-hidden p-0.5 border border-slate-800">
+                            <div class="bg-gradient-to-r from-blue-500 to-indigo-500 h-full rounded-full" style="width: 80%;"></div>
+                        </div>
+                    </div>
+
+                    <div>
+                        <div class="flex justify-between text-xs font-mono text-slate-300 mb-1">
+                            <span>CMS (WordPress, Wix, Squarespace)</span>
+                            <span class="text-cyan-400">88%</span>
+                        </div>
+                        <div class="w-full bg-slate-900 h-2 rounded-full overflow-hidden p-0.5 border border-slate-800">
+                            <div class="bg-gradient-to-r from-indigo-500 to-purple-500 h-full rounded-full" style="width: 88%;"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Software, Media & Systems -->
+            <div class="glass-cs-card p-8 rounded-3xl space-y-6 tech-bracket">
+                <h3 class="text-xl font-bold text-white flex items-center gap-3">
+                    <i class="fas fa-photo-video text-purple-400"></i> Design, Media & Enterprise Software
+                </h3>
+                
+                <div class="space-y-4">
+                    <div>
+                        <div class="flex justify-between text-xs font-mono text-slate-300 mb-1">
+                            <span>Photoshop, Illustrator, Canva, Photopea</span>
+                            <span class="text-purple-400">85%</span>
+                        </div>
+                        <div class="w-full bg-slate-900 h-2 rounded-full overflow-hidden p-0.5 border border-slate-800">
+                            <div class="bg-gradient-to-r from-purple-500 to-pink-500 h-full rounded-full" style="width: 85%;"></div>
+                        </div>
+                    </div>
+
+                    <div>
+                        <div class="flex justify-between text-xs font-mono text-slate-300 mb-1">
+                            <span>Video Editing (Premiere Pro, After Effects, Camtasia, Filmora, CapCut)</span>
+                            <span class="text-purple-400">87%</span>
+                        </div>
+                        <div class="w-full bg-slate-900 h-2 rounded-full overflow-hidden p-0.5 border border-slate-800">
+                            <div class="bg-gradient-to-r from-pink-500 to-red-500 h-full rounded-full" style="width: 87%;"></div>
+                        </div>
+                    </div>
+
+                    <div>
+                        <div class="flex justify-between text-xs font-mono text-slate-300 mb-1">
+                            <span>HR, CRM & Accounting (PintiMeHR, PIHR, SmartComm, bCloud)</span>
+                            <span class="text-purple-400">92%</span>
+                        </div>
+                        <div class="w-full bg-slate-900 h-2 rounded-full overflow-hidden p-0.5 border border-slate-800">
+                            <div class="bg-gradient-to-r from-cyan-500 to-emerald-500 h-full rounded-full" style="width: 92%;"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Soft Skills & Languages -->
+        <div class="mt-12 glass-cs-card p-8 rounded-3xl text-center space-y-6 tech-bracket">
+            <div>
+                <h4 class="text-lg font-bold text-white uppercase tracking-wider mb-3">Professional Soft Skills</h4>
+                <div class="flex flex-wrap justify-center gap-3 text-xs font-medium">
+                    <span class="px-4 py-2 rounded-xl bg-slate-900 text-cyan-300 border border-slate-800">Project Management</span>
+                    <span class="px-4 py-2 rounded-xl bg-slate-900 text-purple-300 border border-slate-800">Leadership & Teamwork</span>
+                    <span class="px-4 py-2 rounded-xl bg-slate-900 text-emerald-300 border border-slate-800">Critical Thinking</span>
+                    <span class="px-4 py-2 rounded-xl bg-slate-900 text-pink-300 border border-slate-800">Public Relations</span>
+                    <span class="px-4 py-2 rounded-xl bg-slate-900 text-amber-300 border border-slate-800">Effective Communication</span>
+                    <span class="px-4 py-2 rounded-xl bg-slate-900 text-blue-300 border border-slate-800">Time Management</span>
+                </div>
+            </div>
+
+            <div class="pt-4 border-t border-slate-800">
+                <h4 class="text-sm font-bold text-slate-400 uppercase tracking-wider mb-3 font-mono">Languages</h4>
+                <div class="flex flex-wrap justify-center gap-6 text-xs font-mono">
+                    <span class="text-slate-300"><i class="fas fa-language text-cyan-400 mr-1"></i> Bangla: <strong>Native</strong></span>
+                    <span class="text-slate-300"><i class="fas fa-language text-purple-400 mr-1"></i> English: <strong>Communicative</strong></span>
+                    <span class="text-slate-300"><i class="fas fa-language text-pink-400 mr-1"></i> Hindi: <strong>Fluent</strong></span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Work Experience Section -->
+    <section id="experience" class="py-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-16 space-y-3">
+            <h2 class="text-3xl sm:text-5xl font-black uppercase tracking-tight">
+                Work <span class="neon-text-gradient">Experience</span>
+            </h2>
+            <p class="text-slate-400 text-sm sm:text-base">Professional career background and roles</p>
+        </div>
+
+        <div class="space-y-8">
+
+            <!-- Experience Item 1 -->
+            <div class="glass-cs-card p-8 rounded-3xl border-l-4 border-l-cyan-400 tech-bracket">
+                <div class="flex flex-col md:flex-row md:items-center justify-between gap-2 mb-4">
+                    <div>
+                        <h3 class="text-2xl font-bold text-white">Uni Consultants - Study Abroad</h3>
+                        <p class="text-cyan-400 font-medium text-sm">Software & Application Operations Officer</p>
+                    </div>
+                    <span class="px-4 py-1.5 rounded-full text-xs font-mono bg-cyan-950 text-cyan-300 border border-cyan-800/60 w-fit">
+                        Aug 2025 - Sep 2026
+                    </span>
+                </div>
+                <ul class="space-y-2 text-slate-300 text-sm font-light list-disc list-inside">
+                    <li>Processed and managed student applications, documentation, and CRM entries.</li>
+                    <li>Maintained internal software systems, HRM solutions (PIHR, PintiMeHR), and accounting applications (bCloud).</li>
+                    <li>Updated and designed company website content, graphics, and page layouts.</li>
+                    <li>Ensured accurate data management, system security backups, and university coordination.</li>
+                </ul>
+            </div>
+
+            <!-- Experience Item 2 -->
+            <div class="glass-cs-card p-8 rounded-3xl border-l-4 border-l-indigo-400 tech-bracket">
+                <div class="flex flex-col md:flex-row md:items-center justify-between gap-2 mb-4">
+                    <div>
+                        <h3 class="text-2xl font-bold text-white">Bangla Academy</h3>
+                        <p class="text-indigo-400 font-medium text-sm">Computer Operator</p>
+                    </div>
+                    <span class="px-4 py-1.5 rounded-full text-xs font-mono bg-indigo-950 text-indigo-300 border border-indigo-800/60 w-fit">
+                        May 2024 - Sep 2025
+                    </span>
+                </div>
+                <ul class="space-y-2 text-slate-300 text-sm font-light list-disc list-inside">
+                    <li>Edited book covers and interior layouts (formatting typography, images, page designs).</li>
+                    <li>Proofread typing, grammatical errors, and retouched scanned images for publication quality.</li>
+                    <li>Prepared print-ready PDF files and managed digital archive backup files.</li>
+                </ul>
+            </div>
+
+            <!-- Experience Item 3 -->
+            <div class="glass-cs-card p-8 rounded-3xl border-l-4 border-l-purple-400 tech-bracket">
+                <div class="flex flex-col md:flex-row md:items-center justify-between gap-2 mb-4">
+                    <div>
+                        <h3 class="text-2xl font-bold text-white">Saddan Computer Center</h3>
+                        <p class="text-purple-400 font-medium text-sm">Computer Trainer</p>
+                    </div>
+                    <span class="px-4 py-1.5 rounded-full text-xs font-mono bg-purple-950 text-purple-300 border border-purple-800/60 w-fit">
+                        Jan 2020 - May 2024
+                    </span>
+                </div>
+                <ul class="space-y-2 text-slate-300 text-sm font-light list-disc list-inside">
+                    <li>Delivered training in advanced computer operation, MS Office, Graphic Design, and IT practicals.</li>
+                    <li>Monitored student progress, prepared class notes, materials, and maintained desktop systems.</li>
+                </ul>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Education Section -->
+    <section id="education" class="py-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-16 space-y-3">
+            <h2 class="text-3xl sm:text-5xl font-black uppercase tracking-tight">
+                Academic <span class="neon-text-gradient">Education</span>
+            </h2>
+            <p class="text-slate-400 text-sm sm:text-base">Degrees and educational credentials</p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+            
+            <!-- Degree 1 -->
+            <div class="glass-cs-card p-8 rounded-3xl space-y-4 tech-bracket">
+                <div class="w-12 h-12 rounded-xl bg-cyan-500/10 border border-cyan-500/30 flex items-center justify-center text-cyan-400 text-2xl">
+                    <i class="fas fa-graduation-cap"></i>
+                </div>
+                <span class="text-xs font-mono text-cyan-400 uppercase tracking-wider font-bold">4th Year Running</span>
+                <h3 class="text-2xl font-bold text-white">Bachelor of Science (B.Sc) in CSE</h3>
+                <p class="text-slate-300 text-sm">National University, Bangladesh</p>
+                <p class="text-slate-400 text-xs font-light">Program: Computer Science & Engineering</p>
+            </div>
+
+            <!-- Degree 2 -->
+            <div class="glass-cs-card p-8 rounded-3xl space-y-4 tech-bracket">
+                <div class="w-12 h-12 rounded-xl bg-purple-500/10 border border-purple-500/30 flex items-center justify-center text-purple-400 text-2xl">
+                    <i class="fas fa-university"></i>
+                </div>
+                <span class="text-xs font-mono text-purple-400 uppercase tracking-wider font-bold">Passed Year: 2020</span>
+                <h3 class="text-2xl font-bold text-white">Higher Secondary Certificate (HSC)</h3>
+                <p class="text-slate-300 text-sm">Loreal International College</p>
+                <div class="flex justify-between items-center text-xs text-slate-400 pt-2 border-t border-slate-800">
+                    <span>Section: <strong>Science</strong></span>
+                    <span>Result: <strong class="text-emerald-400">GPA 3.83</strong></span>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Interactive Contact Form Section -->
+    <section id="contact" class="py-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="glass-cs-card rounded-3xl p-8 sm:p-12 border border-cyan-500/30 relative tech-bracket">
+            
+            <div class="text-center max-w-2xl mx-auto space-y-3 mb-12">
+                <h2 class="text-3xl sm:text-5xl font-black uppercase tracking-tight">
+                    Get In <span class="neon-text-gradient">Touch</span>
+                </h2>
+                <p class="text-slate-300 text-sm">
+                    Fill out the interactive form below to generate a direct message or contact Md Tamjid Ashraf via fast communication links.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12">
+                
+                <!-- Direct Communication Links -->
+                <div class="lg:col-span-5 space-y-5">
+                    <div class="glass-cs-card p-6 rounded-2xl flex items-center gap-4">
+                        <div class="w-12 h-12 rounded-xl bg-emerald-500/20 text-emerald-400 flex items-center justify-center text-xl">
+                            <i class="fab fa-whatsapp"></i>
+                        </div>
+                        <div>
+                            <div class="text-xs text-slate-400 font-mono">WhatsApp</div>
+                            <a href="https://wa.me/8801735384372" target="_blank" class="text-sm font-bold text-white hover:text-emerald-400 transition">+880 1735384372</a>
+                        </div>
+                    </div>
+
+                    <div class="glass-cs-card p-6 rounded-2xl flex items-center gap-4">
+                        <div class="w-12 h-12 rounded-xl bg-cyan-500/20 text-cyan-400 flex items-center justify-center text-xl">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                        <div>
+                            <div class="text-xs text-slate-400 font-mono">Email Address</div>
+                            <a href="mailto:tamjidmd50@gmail.com" class="text-sm font-bold text-white hover:text-cyan-400 transition">tamjidmd50@gmail.com</a>
+                        </div>
+                    </div>
+
+                    <div class="glass-cs-card p-6 rounded-2xl flex items-center gap-4">
+                        <div class="w-12 h-12 rounded-xl bg-purple-500/20 text-purple-400 flex items-center justify-center text-xl">
+                            <i class="fas fa-phone-alt"></i>
+                        </div>
+                        <div>
+                            <div class="text-xs text-slate-400 font-mono">Direct Phone Call</div>
+                            <a href="tel:+8801735384372" class="text-sm font-bold text-white hover:text-purple-400 transition">+880 1735384372</a>
+                        </div>
+                    </div>
+
+                    <div class="glass-cs-card p-6 rounded-2xl flex items-center gap-4">
+                        <div class="w-12 h-12 rounded-xl bg-red-500/20 text-red-400 flex items-center justify-center text-xl">
+                            <i class="fas fa-map-marker-alt"></i>
+                        </div>
+                        <div>
+                            <div class="text-xs text-slate-400 font-mono">Location</div>
+                            <a href="https://maps.google.com/?q=Dhaka,Bangladesh" target="_blank" class="text-sm font-bold text-white hover:text-red-400 transition">Dhaka, Bangladesh</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Contact Interactive Form -->
+                <div class="lg:col-span-7">
+                    <form id="portfolio-contact-form" class="space-y-4">
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                            <div>
+                                <label class="block text-xs font-mono text-slate-300 mb-2">Your Name *</label>
+                                <input type="text" id="sender-name" required placeholder="John Doe" class="w-full px-4 py-3 rounded-xl bg-slate-900/90 border border-slate-800 text-white placeholder-slate-500 focus:outline-none focus:border-cyan-400 transition text-sm">
+                            </div>
+                            <div>
+                                <label class="block text-xs font-mono text-slate-300 mb-2">Your Email *</label>
+                                <input type="email" id="sender-email" required placeholder="john@example.com" class="w-full px-4 py-3 rounded-xl bg-slate-900/90 border border-slate-800 text-white placeholder-slate-500 focus:outline-none focus:border-cyan-400 transition text-sm">
+                            </div>
+                        </div>
+
+                        <div>
+                            <label class="block text-xs font-mono text-slate-300 mb-2">Subject</label>
+                            <input type="text" id="sender-subject" placeholder="Project Collaboration / Job Opportunity" class="w-full px-4 py-3 rounded-xl bg-slate-900/90 border border-slate-800 text-white placeholder-slate-500 focus:outline-none focus:border-cyan-400 transition text-sm">
+                        </div>
+
+                        <div>
+                            <label class="block text-xs font-mono text-slate-300 mb-2">Message *</label>
+                            <textarea id="sender-message" rows="5" required placeholder="Write your message here..." class="w-full px-4 py-3 rounded-xl bg-slate-900/90 border border-slate-800 text-white placeholder-slate-500 focus:outline-none focus:border-cyan-400 transition text-sm"></textarea>
+                        </div>
+
+                        <button type="submit" class="w-full py-4 rounded-xl bg-gradient-to-r from-cyan-500 via-indigo-600 to-purple-600 text-white font-bold text-xs uppercase tracking-wider hover:opacity-90 transition shadow-lg shadow-cyan-500/20 flex items-center justify-center gap-2">
+                            <i class="fas fa-paper-plane"></i> Send Direct Message
+                        </button>
+                    </form>
+
+                    <!-- Feedback Status -->
+                    <div id="form-status" class="hidden mt-4 p-4 rounded-xl text-xs font-mono text-center"></div>
+                </div>
+
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-8 border-t border-slate-900 text-center text-xs text-slate-500 font-mono">
+        <p>© 2026 MD TAMJID ASHRAF. All Rights Reserved.</p>
+    </footer>
+
+    <!-- Intelligent Point-to-Point Canvas Script -->
+    <script>
+        const canvas = document.getElementById('cs-network-canvas');
+        const ctx = canvas.getContext('2d');
+
+        let mouse = { x: null, y: null, radius: 150 };
+
+        window.addEventListener('mousemove', (e) => {
+            mouse.x = e.x;
+            mouse.y = e.y;
+        });
+
+        function resizeCanvas() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        }
+        resizeCanvas();
+        window.addEventListener('resize', resizeCanvas);
+
+        const nodes = [];
+        const nodeCount = Math.min(Math.floor(window.innerWidth / 20), 65);
+
+        for (let i = 0; i < nodeCount; i++) {
+            nodes.push({
+                x: Math.random() * canvas.width,
+                y: Math.random() * canvas.height,
+                vx: (Math.random() - 0.5) * 0.8,
+                vy: (Math.random() - 0.5) * 0.8,
+                radius: Math.random() * 2 + 1.5,
+                color: Math.random() > 0.4 ? '#00f2fe' : (Math.random() > 0.5 ? '#a855f7' : '#ec4899')
+            });
+        }
+
+        function drawCSNetwork() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+            // Draw Point-to-Point Connections
+            for (let i = 0; i < nodes.length; i++) {
+                let n1 = nodes[i];
+
+                n1.x += n1.vx;
+                n1.y += n1.vy;
+
+                if (n1.x < 0 || n1.x > canvas.width) n1.vx *= -1;
+                if (n1.y < 0 || n1.y > canvas.height) n1.vy *= -1;
+
+                // Draw Node Point
+                ctx.beginPath();
+                ctx.arc(n1.x, n1.y, n1.radius, 0, Math.PI * 2);
+                ctx.fillStyle = n1.color;
+                ctx.shadowBlur = 10;
+                ctx.shadowColor = n1.color;
+                ctx.fill();
+
+                // Connect nearby nodes point-to-point
+                for (let j = i + 1; j < nodes.length; j++) {
+                    let n2 = nodes[j];
+                    let dx = n1.x - n2.x;
+                    let dy = n1.y - n2.y;
+                    let dist = Math.sqrt(dx * dx + dy * dy);
+
+                    if (dist < 140) {
+                        ctx.beginPath();
+                        ctx.moveTo(n1.x, n1.y);
+                        ctx.lineTo(n2.x, n2.y);
+                        ctx.strokeStyle = `rgba(0, 242, 254, ${0.35 * (1 - dist / 140)})`;
+                        ctx.lineWidth = 0.6;
+                        ctx.stroke();
+                    }
+                }
+
+                // Mouse interaction beam
+                if (mouse.x && mouse.y) {
+                    let mdx = n1.x - mouse.x;
+                    let mdy = n1.y - mouse.y;
+                    let mdist = Math.sqrt(mdx * mdx + mdy * mdy);
+
+                    if (mdist < mouse.radius) {
+                        ctx.beginPath();
+                        ctx.moveTo(n1.x, n1.y);
+                        ctx.lineTo(mouse.x, mouse.y);
+                        ctx.strokeStyle = `rgba(168, 85, 247, ${0.4 * (1 - mdist / mouse.radius)})`;
+                        ctx.lineWidth = 0.8;
+                        ctx.stroke();
+                    }
+                }
+            }
+
+            requestAnimationFrame(drawCSNetwork);
+        }
+
+        window.onload = function() {
+            drawCSNetwork();
+
+            // Mobile Navigation Toggle Logic
+            const toggle = document.getElementById('mobile-toggle');
+            const menu = document.getElementById('mobile-menu');
+            if (toggle && menu) {
+                toggle.addEventListener('click', () => {
+                    menu.classList.toggle('hidden');
+                });
+            }
+
+            // Contact Form Mailto Handler
+            const form = document.getElementById('portfolio-contact-form');
+            const status = document.getElementById('form-status');
+
+            if (form) {
+                form.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    
+                    const name = document.getElementById('sender-name').value;
+                    const email = document.getElementById('sender-email').value;
+                    const subject = document.getElementById('sender-subject').value || "Portfolio Contact";
+                    const message = document.getElementById('sender-message').value;
+
+                    const mailtoUrl = `mailto:tamjidmd50@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent("Name: " + name + "\nEmail: " + email + "\n\nMessage:\n" + message)}`;
+                    
+                    window.location.href = mailtoUrl;
+
+                    status.classList.remove('hidden');
+                    status.className = "mt-4 p-4 rounded-xl text-xs font-mono text-center bg-emerald-950/60 text-emerald-300 border border-emerald-800";
+                    status.innerHTML = "<i class='fas fa-check-circle mr-1'></i> Message generated! Opening your mail client to send to tamjidmd50@gmail.com";
+                });
+            }
+        };
+    </script>
+</body>
+</html>
